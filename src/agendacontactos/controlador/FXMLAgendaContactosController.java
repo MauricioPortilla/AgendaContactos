@@ -1,5 +1,6 @@
 package agendacontactos.controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -7,13 +8,22 @@ import java.util.ResourceBundle;
 import agendacontactos.Contacto;
 import agendacontactos.ContactoDAO;
 import agendacontactos.IContactoDAO;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class FXMLAgendaContactosController {
 
@@ -85,7 +95,41 @@ public class FXMLAgendaContactosController {
 		birthdateTableColumn.setCellValueFactory(
             new PropertyValueFactory<>("fechaNacimiento")
 		);
-		contactosTableView.setItems(contactoDAO.getContactos());
-	}
+        contactosTableView.setItems(contactoDAO.getContactos());
+
+        agregarButton.setOnAction(agregarButtonHandler());
+    }
+    
+    private EventHandler<ActionEvent> agregarButtonHandler() {
+        return new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/agendacontactos/interfaz/FXMLContactoForm.fxml"
+                    ));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene((AnchorPane)loader.load()));
+                    stage.setTitle("Datos del contacto");
+                    FXMLContactoFormController controller = loader.
+                        <FXMLContactoFormController>getController();
+                    if (contactosTableView.getSelectionModel().getSelectedItem() != null) {
+                        controller.initData(contactosTableView.getSelectionModel().getSelectedItem());
+                    }
+                    stage.setOnHidden(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent event) {
+                            // Recargar contactos
+                            contactosTableView.setItems(contactoDAO.getContactos());
+                        }
+                    });
+                    stage.show();
+                } catch (IOException e) {
+                    new Alert(AlertType.ERROR, "Ocurrió un error al realizar esta acción.").show();
+                    System.out.println(e.getMessage());
+                }
+			}
+		};
+    }
 
 }

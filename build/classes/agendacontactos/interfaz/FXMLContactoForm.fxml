@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minWidth="436.0" prefHeight="400.0" prefWidth="436.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="agendacontactos.controlador.FXMLContactoFormController">
+  <children>
+    <Label layoutX="26.0" layoutY="68.0" text="Nombre:">
+      <font>
+        <Font size="15.0" fx:id="x1" />
+      </font>
+    </Label>
+    <TextField fx:id="nombreTextField" layoutX="26.0" layoutY="88.0" prefWidth="200.0" />
+    <Label font="$x1" layoutX="26.0" layoutY="119.0" text="Apellido paterno:" />
+    <TextField fx:id="paternoTextField" layoutX="26.0" layoutY="139.0" prefWidth="200.0" />
+    <Label font="$x1" layoutX="26.0" layoutY="171.0" text="Apellido materno:" />
+    <TextField fx:id="maternoTextField" layoutX="26.0" layoutY="191.0" prefWidth="200.0" />
+    <Label font="$x1" layoutX="27.0" layoutY="219.0" text="Teléfono:" />
+    <TextField fx:id="telefonoTextField" layoutX="27.0" layoutY="239.0" prefWidth="200.0" />
+    <Label font="$x1" layoutX="29.0" layoutY="271.0" text="Correo electrónico:" />
+    <TextField fx:id="emailTextField" layoutX="29.0" layoutY="291.0" prefWidth="200.0" />
+    <Label font="$x1" layoutX="29.0" layoutY="321.0" text="Fecha de nacimiento" />
+    <TextField fx:id="fechaNacimientoTextField" layoutX="29.0" layoutY="341.0" prefWidth="200.0" promptText="25/06/1999" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="0.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="436.0" />
+    <Label layoutX="114.0" layoutY="9.0" text="Datos del contacto">
+      <font>
+        <Font size="25.0" />
+      </font>
+    </Label>
+    <Button fx:id="guardarButton" layoutX="337.0" layoutY="364.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="85.0" text="Guardar" />
+  </children>
+</AnchorPane>

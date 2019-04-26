@@ -26,6 +26,7 @@ public class ContactoDAO implements IContactoDAO {
      * Carga los contactos de la base de datos.
      */
     private void loadContactos() {
+        contactos.removeAll();
         SQL.executeQuery("SELECT * FROM contacto;", null, (result) -> {
             for (SQLRow row : result) {
                 contactos.add(

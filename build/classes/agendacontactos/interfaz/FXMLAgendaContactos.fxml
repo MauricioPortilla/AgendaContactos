@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="737.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="agendacontactos.controlador.FXMLAgendaController">
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="737.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="agendacontactos.controlador.FXMLAgendaContactosController">
   <children>
     <TableView fx:id="contactosTableView" layoutX="12.0" layoutY="127.0" prefHeight="327.0" prefWidth="709.0">
       <columns>
