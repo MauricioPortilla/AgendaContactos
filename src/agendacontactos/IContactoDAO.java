@@ -18,6 +18,15 @@ public interface IContactoDAO {
      * @return contacto agregado
      */
     Contacto insertContacto(Contacto contacto);
+
+    /**
+     * Modifica el contacto en la base de datos.
+     * 
+     * @param contacto contacto a modificar
+     * @return contacto modificado
+     */
+    Contacto updateContacto(Contacto contacto);
+
     /**
      * Elimina el contacto de la base de datos.
      * 
@@ -25,6 +34,7 @@ public interface IContactoDAO {
      * @return contacto eliminado
      */
     Contacto deleteContacto(Contacto contacto);
+
     /**
      * Retorna una lista observable con los contactos recuperados
      * de la base de datos.

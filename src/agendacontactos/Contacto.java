@@ -8,6 +8,7 @@
 package agendacontactos;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Contacto {
     private int id;
@@ -20,6 +21,8 @@ public class Contacto {
 
     /**
      * Crea un contacto nuevo.
+     * 
+     * @param id identificador del contacto
      * @param nombre nombre del contacto
      * @param paterno paterno del contacto
      * @param materno materno del contacto
@@ -28,9 +31,10 @@ public class Contacto {
      * @param fechaNacimiento fecha de nacimiento del contacto
      */
     public Contacto(
-        String nombre, String paterno, String materno, String telefono,
+        int id, String nombre, String paterno, String materno, String telefono,
         String correo, LocalDate fechaNacimiento
     ) {
+        this.id = id;
         this.nombre = nombre;
         this.paterno = paterno;
         this.materno = materno;
@@ -40,7 +44,62 @@ public class Contacto {
     }
 
     /**
+     * Asigna un valor al nombre del contacto.
+     * 
+     * @param nombre nuevo nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * Asigna un valor al apellido paterno del contacto.
+     * 
+     * @param paterno nuevo apellido paterno
+     */
+    public void setPaterno(String paterno) {
+        this.paterno = paterno;
+    }
+
+    /**
+     * Asigna un valor al apellido materno del contacto.
+     * 
+     * @param materno nuevo apellido materno
+     */
+    public void setMaterno(String materno) {
+        this.materno = materno;
+    }
+
+    /**
+     * Asigna un valor al telefono del contacto.
+     * 
+     * @param telefono nuevo telefono
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    /**
+     * Asigna un valor al correo del contacto.
+     * 
+     * @param correo nuevo correo
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    /**
+     * Asigna un valor a la fecha de nacimiento del contacto.
+     * 
+     * @param fechaNacimiento nueva fecha de nacimiento
+     */
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    /**
      * Retorna el identificador del contacto.
+     * 
      * @return identificador del contacto
      */
     public int getId() {
@@ -49,6 +108,7 @@ public class Contacto {
 
     /**
      * Retorna el nombre del contacto.
+     * 
      * @return nombre del contacto
      */
     public String getNombre() {
@@ -57,6 +117,7 @@ public class Contacto {
 
     /**
      * Retorna el apellido paterno del contacto.
+     * 
      * @return apellido paterno del contacto
      */
     public String getPaterno() {
@@ -65,6 +126,7 @@ public class Contacto {
 
     /**
      * Retorna el apellido materno del contacto.
+     * 
      * @return apellido materno del contacto
      */
     public String getMaterno() {
@@ -73,6 +135,7 @@ public class Contacto {
 
     /**
      * Retorna el telefono del contacto.
+     * 
      * @return telefono del contacto
      */
     public String getTelefono() {
@@ -81,6 +144,7 @@ public class Contacto {
     
     /**
      * Retorna el correo del contacto.
+     * 
      * @return correo del contacto
      */
     public String getCorreo() {
@@ -89,9 +153,19 @@ public class Contacto {
 
     /**
      * Retorna la fecha de nacimiento del contacto.
+     * 
      * @return fecha de nacimiento del contacto
      */
-    public LocalDate getFechaNacimiento() {
+    public String getFechaNacimiento() {
+        return fechaNacimiento.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+    }
+
+    /**
+     * Retorna la fecha de nacimiento del contacto en su tipo LocalDate.
+     * 
+     * @return fecha de nacimiento del contacto
+     */
+    public LocalDate getNaturalFechaNacimiento() {
         return fechaNacimiento;
     }
 }

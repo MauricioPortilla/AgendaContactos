@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="737.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="agendacontactos.controlador.FXMLAgendaContactosController">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="737.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="agendacontactos.controlador.FXMLAgendaContactosController">
   <children>
     <TableView fx:id="contactosTableView" layoutX="12.0" layoutY="127.0" prefHeight="327.0" prefWidth="709.0">
       <columns>
@@ -26,11 +26,17 @@
         <Font size="30.0" />
       </font>
     </Label>
-    <Button fx:id="agregarButton" layoutX="61.0" layoutY="468.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="95.0" text="Agregar" />
-    <Button fx:id="eliminarButton" layoutX="182.0" layoutY="469.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="95.0" text="Eliminar" />
-    <Button fx:id="sortAlphabeticButton" layoutX="306.0" layoutY="468.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="170.0" text="Ordenar alfabeticamente" />
-    <Button fx:id="sortBirthdateButton" layoutX="503.0" layoutY="468.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="170.0" text="Ordenar por cumpleaños" />
-    <TextField id="searchNameTextField" fx:id="searchContactTextField" layoutX="521.0" layoutY="97.0" onKeyPressed="#onSearchContactTextFieldKeyPress" prefWidth="200.0" />
+    <Button fx:id="agregarButton" layoutX="14.0" layoutY="467.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="95.0" text="Agregar" />
+    <Button fx:id="eliminarButton" layoutX="245.0" layoutY="466.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="95.0" text="Eliminar" />
+    <Button fx:id="sortAlphabeticButton" layoutX="361.0" layoutY="466.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="170.0" text="Ordenar alfabeticamente" />
+    <Button fx:id="sortBirthdateButton" layoutX="551.0" layoutY="466.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="170.0" text="Ordenar por cumpleaños" />
+    <TextField id="searchNameTextField" fx:id="searchContactTextField" layoutX="521.0" layoutY="97.0" onKeyReleased="#onSearchContactTextFieldKeyUp" prefWidth="200.0" />
     <Label layoutX="434.0" layoutY="100.0" text="Buscar nombre:" />
+    <Button fx:id="editarButton" layoutX="129.0" layoutY="467.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="95.0" text="Editar" />
+    <Label fx:id="birthdayEventsLabel" layoutX="14.0" layoutY="504.0" text="BIRTHDAY_EVENTS">
+      <font>
+        <Font size="15.0" />
+      </font>
+    </Label>
   </children>
 </AnchorPane>

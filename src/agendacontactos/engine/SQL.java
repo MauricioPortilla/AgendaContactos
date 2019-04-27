@@ -129,7 +129,7 @@ public class SQL {
             Connection conn = new Database().getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             for (int i = 0; i < parameters.size(); i++) {
-                ps.setObject(i+1, parameters.get(i));
+                ps.setObject(i + 1, parameters.get(i));
             }
             status = ps.executeUpdate();
             ps.close();

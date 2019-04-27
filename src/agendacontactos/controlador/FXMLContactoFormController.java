@@ -57,10 +57,13 @@ public class FXMLContactoFormController {
     @FXML
 	private TextField telefonoTextField;
 	
-	private Contacto contacto;
+	private Contacto contacto = null;
 
 	private IContactoDAO contactoDAO = new ContactoDAO();
 
+	/**
+	 * Inicializa la ventana.
+	 */
     @FXML
     void initialize() {
 		guardarButton.setOnAction(guardarButtonHandler());
@@ -68,6 +71,7 @@ public class FXMLContactoFormController {
 	
 	/**
 	 * Inicia la ventana con base en un contacto
+	 * 
 	 * @param contacto contacto
 	 */
 	public void initData(Contacto contacto) {
@@ -77,11 +81,14 @@ public class FXMLContactoFormController {
 		maternoTextField.setText(contacto.getMaterno());
 		telefonoTextField.setText(contacto.getTelefono());
 		emailTextField.setText(contacto.getCorreo());
-		fechaNacimientoTextField.setText(
-			contacto.getFechaNacimiento().format(DateTimeFormatter.ofPattern("d/M/uuuu"))
-		);
+		fechaNacimientoTextField.setText(contacto.getFechaNacimiento());
 	}
 
+	/**
+	 * Lleva a cabo el control del evento del boton de Guardar
+	 * 
+	 * @return el evento
+	 */
 	private EventHandler<ActionEvent> guardarButtonHandler() {
 		return new EventHandler<ActionEvent>() {
 			@Override
@@ -96,9 +103,16 @@ public class FXMLContactoFormController {
 					new Alert(AlertType.WARNING, "Debes completar los campos").show();
 					return;
 				}
+				if (!fechaNacimientoTextField.getText().matches(
+					"[0-9]{1,2}[/][0-9]{1,2}[/][0-9]{4}")
+				) {
+					new Alert(AlertType.WARNING, "Debes introducir una fecha válida.").show();
+					return;
+				}
 				// Nuevo contacto
 				if (contacto == null) {
 					contactoDAO.insertContacto(new Contacto(
+						0,
 						nombreTextField.getText(), 
 						paternoTextField.getText(), 
 						maternoTextField.getText(),
@@ -109,11 +123,22 @@ public class FXMLContactoFormController {
                             DateTimeFormatter.ofPattern("d/M/uuuu")
                         )
 					));
-					new Alert(AlertType.CONFIRMATION, "Contacto agregado").show();
+					new Alert(AlertType.INFORMATION, "Contacto agregado").show();
 				} else {
 					// Editar contacto
-
-					new Alert(AlertType.CONFIRMATION, "Contacto editado").show();
+					contacto.setNombre(nombreTextField.getText());
+					contacto.setPaterno(paternoTextField.getText());
+					contacto.setMaterno(maternoTextField.getText());
+					contacto.setTelefono(telefonoTextField.getText());
+					contacto.setCorreo(emailTextField.getText());
+					contacto.setFechaNacimiento(
+						LocalDate.parse(
+							fechaNacimientoTextField.getText(),
+							DateTimeFormatter.ofPattern("d/M/uuuu")
+						)
+					);
+					contactoDAO.updateContacto(contacto);
+					new Alert(AlertType.INFORMATION, "Contacto editado").show();
 				}
 				((Stage) guardarButton.getScene().getWindow()).close();
 			}

@@ -1,8 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * AgendaContactos es la clase principal que inicializa la aplicación.
+ * 
+ * @author Mauricio Cruz Portilla
+ * @since 2019/04/26
+ * @version 1.0
  */
+
 package agendacontactos;
 
 import javafx.application.Application;
@@ -11,10 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Mauricio CP
- */
 public class AgendaContactos extends Application {
 	
 	@Override
@@ -22,7 +21,7 @@ public class AgendaContactos extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("interfaz/FXMLAgendaContactos.fxml"));
 		
 		Scene scene = new Scene(root);
-		
+		stage.setTitle("Agenda de Contactos - Mauricio Cruz Portilla");
 		stage.setScene(scene);
 		stage.show();
 	}
