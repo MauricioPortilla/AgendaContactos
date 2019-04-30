@@ -11,6 +11,8 @@ package agendacontactos.engine;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class Database {
     private Connection connection;
@@ -26,10 +28,22 @@ public class Database {
             connection = DriverManager.getConnection(url, "agendauser", "2506");
             System.out.println("Connected.");
         } catch(SQLException sqlException){
+			new Alert(
+				AlertType.ERROR, 
+				"Ocurrió un error al conectarse con la base de datos."
+			).show();
             System.out.println("Connection error -> " + sqlException.getMessage());
         } catch(ClassNotFoundException classException){
+			new Alert(
+				AlertType.ERROR, 
+				"Ocurrió un error al conectarse con la base de datos."
+			).show();
             classException.printStackTrace();
         } catch(Exception e){
+			new Alert(
+				AlertType.ERROR, 
+				"Ocurrió un error al conectarse con la base de datos."
+			).show();
             System.out.println("Se produjo un error inesperado: " + e.getMessage());
         }
     }
@@ -49,7 +63,8 @@ public class Database {
         try {
             connection.close();
         } catch (SQLException sqlException) {
-            System.err.println("Error: " + sqlException.getMessage () + "\n" + sqlException.getErrorCode ());
+			new Alert(AlertType.ERROR, "Ocurrió un error al cerrar la conexión.").show();
+            System.err.println("Error: " + sqlException.getMessage());
         }
     }
 }
